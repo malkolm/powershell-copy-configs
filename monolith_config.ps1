@@ -14,12 +14,9 @@ if ((Get-ChildItem $destination -force | Select-Object -First 1 | Measure-Object
 }
 else
 {
-
     Write-Output "Done...`n"
 
-
     $files = Get-ChildItem $destination
-
     $files | ForEach-Object {
         Write-Output "Updating $destination\$_ for host: $env:computername`n"
         (gc $destination\$_).replace('YOURMACHINENAME',"$env:computername")|sc "$destination\$_"
